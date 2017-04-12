@@ -127,7 +127,7 @@ const store = new Vuex.Store({
             auth.signInWithRedirect(provider);
           }
         }).catch((err) => {
-          alert(err.errorMessage);
+          alert(err.message);
          });
       } else {
           commit('USER_SET', Object.assign({ token: result.credential.accessToken, refreshToken: result.credential.refreshToken }, result.user));

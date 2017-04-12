@@ -120,17 +120,9 @@ const store = new Vuex.Store({
     },
     SIGN_IN({ state, commit, dispatch }) {
       if (state.user === null) {
-        auth.getRedirectResult().then((res) => {
-          if (res.credential) {
-            commit('USER_SET', Object.assign({ token: result.credential.accessToken, refreshToken: result.credential.refreshToken }, result.user));
-          } else {
-            auth.signInWithRedirect(provider);
-          }
-        }).catch((err) => {
-          alert(err.message);
-         });
-      } else {
+        auth.signInWithPopup(provider).then((result) => { 
           commit('USER_SET', Object.assign({ token: result.credential.accessToken, refreshToken: result.credential.refreshToken }, result.user));
+        });
       }
     }
   },
@@ -182,7 +174,6 @@ const store = new Vuex.Store({
 
 
 auth.onAuthStateChanged((user) => { 
-  console.log(user);
   if (user) {
     store.dispatch("USER_LOGGED_IN", user);
     

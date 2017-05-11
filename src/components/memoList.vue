@@ -49,6 +49,8 @@ import Memo from './memo.vue'
     width 300px
     max-width 300px
     height 100%
+    overflow-y auto
+    padding-bottom 101px
     background-color rgba(255,255,255,0.2)
     .tabContainer
       .tabHeader
